@@ -5,6 +5,9 @@ for avoiding the filesystem slowness on Docker for Mac, for instance. It's also
 generally useful for any other time where you have a slow filesystem as a source
 of files that need to be read inside of a container.
 
+This is a fork of [cweagans/docker-bg-sync](https://github.com/cweagans/docker-bg-sync).
+I added additional architectures to make it compatible with many devices, e.g. Apple Silicon devices with Apple M1.
+
 ## Usage
 
 This is a basic `docker-compose.yml` that demonstrates usage of this container.

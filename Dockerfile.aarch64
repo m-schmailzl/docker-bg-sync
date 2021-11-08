@@ -1,4 +1,5 @@
-FROM alpine:3
+FROM arm64v8/alpine:3
+COPY qemu-aarch64-static /usr/bin/
 LABEL maintainer="maximilian@schmailzl.net"
 
 # Alpine doesn't ship with Bash.
