@@ -1,21 +1,12 @@
+FROM eugenmayer/unison:2.51.3-4.12.0-AMD64 as unison
+
 FROM alpine:3
 LABEL maintainer="maximilian@schmailzl.net"
 
-# Alpine doesn't ship with Bash.
 RUN apk add --no-cache bash
 
-# Install Unison from source with inotify support + remove compilation tools
-ARG UNISON_VERSION=2.48.4
-RUN apk add --no-cache --virtual .build-dependencies build-base curl && \
-    apk add --no-cache inotify-tools && \
-    apk add --no-cache --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ ocaml && \
-    curl -L https://github.com/bcpierce00/unison/archive/$UNISON_VERSION.tar.gz | tar zxv -C /tmp && \
-    cd /tmp/unison-${UNISON_VERSION} && \
-    sed -i -e 's/GLIBC_SUPPORT_INOTIFY 0/GLIBC_SUPPORT_INOTIFY 1/' src/fsmonitor/linux/inotify_stubs.c && \
-    make UISTYLE=text NATIVE=true STATIC=true && \
-    cp src/unison src/unison-fsmonitor /usr/local/bin && \
-    apk del .build-dependencies ocaml && \
-    rm -rf /tmp/unison-${UNISON_VERSION}
+COPY --from=unison /usr/local/bin/unison /usr/local/bin/unison
+COPY --from=unison /usr/local/bin/unison-fsmonitor /usr/local/bin/unison-fsmonitor
 
 ENV HOME="/root" \
     UNISON_USER="root" \

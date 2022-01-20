@@ -5,8 +5,8 @@ for avoiding the filesystem slowness on Docker for Mac, for instance. It's also
 generally useful for any other time where you have a slow filesystem as a source
 of files that need to be read inside of a container.
 
-This is a fork of [cweagans/docker-bg-sync](https://github.com/cweagans/docker-bg-sync).
-I added additional architectures to make it compatible with many devices, e.g. Apple Silicon devices with Apple M1.
+This is a fork of [cweagans/docker-bg-sync](https://github.com/cweagans/docker-bg-sync) from Cameron Eagans.
+I added the ARM64 architecture to make it compatible with additional devices, e.g. Apple Silicon devices with Apple M1.
 
 ## Usage
 
@@ -104,9 +104,10 @@ Specific reasons:
 
 ## Credits
 
+* Cameron Eagans - [docker-bg-sync](https://github.com/cweagans/docker-bg-sync)
 * Mickael Perrin - [docker-magic-sync](https://github.com/mickaelperrin/docker-magic-sync)
 * Eugen Mayer - [docker-sync](https://github.com/eugenmayer/docker-sync)
 
 ## Donations
 
-Bitcoin donation address: 149NMUk73ETqEP3ML9sghpWQqEqAREX9z2
+Bitcoin donation address (cweagans): 149NMUk73ETqEP3ML9sghpWQqEqAREX9z2
