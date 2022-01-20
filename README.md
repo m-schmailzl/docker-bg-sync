@@ -6,7 +6,7 @@ generally useful for any other time where you have a slow filesystem as a source
 of files that need to be read inside of a container.
 
 This is a fork of [cweagans/docker-bg-sync](https://github.com/cweagans/docker-bg-sync) from Cameron Eagans.
-I added additional architectures to make it compatible with many devices, e.g. Apple Silicon devices with Apple M1.
+I added the ARM64 architecture to make it compatible with additional devices, e.g. Apple Silicon devices with Apple M1.
 
 ## Usage
 
