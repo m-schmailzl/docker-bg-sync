@@ -1,10 +1,10 @@
-image: schmailzl/docker-bg-sync:latest
+image: schmailzl/bg-sync:latest
 manifests:
-  - image: schmailzl/docker-bg-sync:amd64
+  - image: schmailzl/bg-sync:amd64
     platform:
       architecture: amd64
       os: linux
-  - image: schmailzl/docker-bg-sync:aarch64
+  - image: schmailzl/bg-sync:aarch64
     platform:
       architecture: arm64
       os: linux
