@@ -4,20 +4,6 @@ manifests:
     platform:
       architecture: amd64
       os: linux
-  - image: schmailzl/docker-bg-sync:i386
-    platform:
-      architecture: 386
-      os: linux
-  - image: schmailzl/docker-bg-sync:armv6
-    platform:
-      architecture: arm
-      os: linux
-      variant: v6
-  - image: schmailzl/docker-bg-sync:armv7
-    platform:
-      architecture: arm
-      os: linux
-      variant: v7
   - image: schmailzl/docker-bg-sync:aarch64
     platform:
       architecture: arm64
