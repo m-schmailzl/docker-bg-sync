@@ -5,8 +5,11 @@ for avoiding the filesystem slowness on Docker for Mac, for instance. It's also
 generally useful for any other time where you have a slow filesystem as a source
 of files that need to be read inside of a container.
 
-This is a fork of [cweagans/docker-bg-sync](https://github.com/cweagans/docker-bg-sync) from Cameron Eagans.
-I added the ARM64 architecture to make it compatible with additional devices, e.g. Apple Silicon devices with Apple M1.
+This is a fork of [cweagans/docker-bg-sync](https://github.com/cweagans/docker-bg-sync)
+from Cameron Eagans.
+I added the ARM64 architecture to make it compatible with additional devices,
+e.g. Apple Silicon devices with Apple M1.
+Additionally it is possible to exclude directories from sync by setting `SYNC_IGNORE`.
 
 ## Usage
 
@@ -72,6 +75,8 @@ documented below.
   * **`SYNC_NODELETE_SOURCE`** (default: '1'): Set this variable to "0" to allow
     Unison to sync deletions to the source directory. This could cause unpredictable
     behaviour with your source files.
+  * **`SYNC_IGNORE`** (default: ''): Directories which should be ignored by Unison.
+    You can supply multiple paths separated by ';'.
   * **`UNISON_USER`** (default: 'root'): The user running Unison. When this value
     is customized it's also possible to specify UNISON_UID, UNISON_GROUP and
     UNISON_GID to ensure that unison has the correct permissions to manage files
