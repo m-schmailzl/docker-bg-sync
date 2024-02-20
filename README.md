@@ -26,7 +26,7 @@ services:
       - /var/www/myapp
 
   bg-sync:
-    image: cweagans/bg-sync
+    image: schmailzl/bg-sync
     volumes:
       - .:/source
     volumes_from:
@@ -35,6 +35,7 @@ services:
       - SYNC_DESTINATION=/var/www/myapp
       - SYNC_MAX_INOTIFY_WATCHES=40000
       - SYNC_VERBOSE=1
+      - SYNC_IGNORE=/var/www/myapp/tmp
     privileged: true
 ```
 
