@@ -1,4 +1,4 @@
-FROM eugenmayer/unison:2.51.3-4.12.0-AMD64 as unison
+FROM eugenmayer/unison:2.51.3-4.12.0-AMD64 AS unison
 
 FROM alpine:3
 LABEL maintainer="maximilian@schmailzl.net"
