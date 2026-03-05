@@ -1,7 +1,6 @@
-FROM eugenmayer/unison:2.51.3-4.12.0-ARM64 as unison
+FROM eugenmayer/unison:2.52.1-4.12.0-ARM64 AS unison
 
-FROM arm64v8/alpine:3
-COPY qemu-aarch64-static /usr/bin/
+FROM alpine:3
 LABEL maintainer="maximilian@schmailzl.net"
 
 RUN apk add --no-cache bash

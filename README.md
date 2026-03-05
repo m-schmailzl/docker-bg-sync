@@ -1,4 +1,11 @@
 # bg-sync
+[![m-schmailzl/docker-bg-sync](https://img.shields.io/badge/m--schmailzl%2Fdocker--bg--sync-gray?logo=github)](https://github.com/m-schmailzl/docker-bg-sync)
+
+![Build Status](https://img.shields.io/github/actions/workflow/status/m-schmailzl/docker-bg-sync/docker-publish.yml?branch=main)
+![GitHub issues](https://img.shields.io/github/issues-raw/m-schmailzl/docker-bg-sync)
+![Docker Image Size (amd64)](https://img.shields.io/docker/image-size/schmailzl/bg-sync)
+![Docker Pulls](https://img.shields.io/docker/pulls/schmailzl/bg-sync)
+![Docker Stars](https://img.shields.io/docker/stars/schmailzl/bg-sync)
 
 This container continuously syncs files between two directories. This is useful
 for avoiding the filesystem slowness on Docker for Mac, for instance. It's also
@@ -17,11 +24,9 @@ This is a basic `docker-compose.yml` that demonstrates usage of this container.
 
 ```
 
-version: '2'
-
 services:
   web:
-    image: php:7.0-apache
+    image: php:8.4-apache
     volumes:
       - /var/www/myapp
 

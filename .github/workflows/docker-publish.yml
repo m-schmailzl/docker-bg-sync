@@ -1,0 +1,84 @@
+name: Build and Push to Docker Hub
+
+on:
+  push:
+    branches: [main, develop]
+
+jobs:
+  build-main:
+    if: github.ref == 'refs/heads/main'
+    strategy:
+      matrix:
+        include:
+          - platform: linux/amd64
+            dockerfile: Dockerfile
+            tag: amd64
+          - platform: linux/arm64
+            dockerfile: Dockerfile.arm64
+            tag: arm64
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: QEMU setup
+        uses: docker/setup-qemu-action@v3
+
+      - name: Docker Buildx setup
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push platform image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: true
+          platforms: ${{ matrix.platform }}
+          tags: schmailzl/bg-sync:${{ matrix.tag }}
+
+  manifest-main:
+    runs-on: ubuntu-latest
+    needs: build-main
+    steps:
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Create and push multi-arch manifest
+        run: |
+          docker buildx imagetools create \
+            --tag schmailzl/bg-sync:latest \
+            schmailzl/bg-sync:amd64 \
+            schmailzl/bg-sync:arm64
+
+  build-dev:
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Docker Buildx setup
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          tags: schmailzl/bg-sync:dev
